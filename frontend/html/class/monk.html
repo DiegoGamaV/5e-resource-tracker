@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>5e-tracker</title>
+    <meta name="5e-resource-tracker - Monge" 
+    content="Monge e suas habilidades de classe.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <h3>5e - Monge</h3>
+    <div>
+      <form action="../index.html">
+        <input type="submit" value="Escolher outra classe" />
+      </form>
+      <button>Criar Personagem com essa classe</button>
+    </div>
+    <hr>
+    <div>
+      <span>
+        Tradições Monásticas
+        <span>
+          <button>Mão Aberta</button>
+          <button>Sombras</button>
+        </span>
+      </span>
+      <span>
+        Nível
+        <select>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </span>
+      <div>
+        Pontos de Ki
+        <span class="fa fa-star checked" style="color:orange"></span>
+        <span class="fa fa-star checked" style="color:orange"></span>
+      </div>
+    </div>
+    <ul id="classAbilitiesByLevel">
+      <li id="classLevel">
+        <div>2º Nível</div>
+        <ul id="classAbilityList">
+          <li id="classAbility">
+            <div>
+              <span id="abilityTitle">
+                Rajada de Golpes
+              </span>
+              <span id="resourceCost"><b>Custo:</b> 1 Ponto de Ki</span>
+              <button>Usar</button>
+            </div>
+            <div id="abilityDescription">
+              Imediatamente após você usar a <u>ação</u> de <i>Ataque</i> no eu turno, você pode usar essa habilidade para fazer mais dois ataques desarmados como uma <u>ação bônus</u>.
+            </div>
+            <div id="abilityTags" style="font-size: small;">
+              <span id="abilityTag"><b>Combate</b></span>
+              <span id="abilityTag"><b>Dano</b></span>
+            </div>
+          </li>
+          <li id="classAbility">
+            <div>
+              <span id="abilityTitle">
+                Passo do Vento
+              </span>
+              <span id="resourceCost"><b>Custo:</b> 1 Ponto de Ki</span>
+              <button>Usar</button>
+            </div>
+            <div id="abilityDescription">
+              Você pode usar uma das <u>ações</u> <i>Desengajar</i> ou <i>Disparar</i> como uma <u>ação bônus</u> no seu turno, e a sua distância de salto é dobrada por este turno.
+            </div>
+            <div id="abilityTags" style="font-size: small;">
+              <span id="abilityTag"><b>Combate</b></span>
+              <span id="abilityTag"><b>Utilidade</b></span>
+              <span id="abilityTag"><b>Movimento</b></span>
+            </div>
+          </li>
+          <li id="classAbility">
+            <div>
+              <span id="abilityTitle">
+                Defesa Paciente
+              </span>
+              <span id="resourceCost"><b>Custo:</b> 1 Ponto de Ki</span>
+              <button>Usar</button>
+            </div>
+            <div id="abilityDescription">
+              Você pode usar a <u>ação</u> de <i>Esquiva</i> como uma <u>ação bônus</u> no seu turno.
+            </div>
+            <div id="abilityTags" style="font-size: small;">
+              <span id="abilityTag"><b>Combate</b></span>
+              <span id="abilityTag"><b>Utilidade</b></span>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li id="classLevel">
+        <div>3º Nível (Tradição Monástica)</div>
+      </li>
+      <li id="classLevel">
+        <div>4º Nível</div>
+        <ul id="classAbilityList">
+          <li id="classAbility">
+            <div>
+              <span id="abilityTitle">
+                Cura Acelerada (característica opcional)
+              </span>
+              <span id="resourceCost"><b>Custo:</b> 2 Pontos de Ki</span>
+              <button>Usar</button>
+            </div>
+            <div id="abilityDescription">
+              Como uma <u>ação</u>, você pode rolar um dado de Artes Marciais <span id="relevantDie">(d6)</span>. Você recupera uma quantidade de pontos de vida equivalente ao resultado mais o seu bônus de proficiência.
+            </div>
+            <div id="abilityTags" style="font-size: small;">
+              <span id="abilityTag"><b>Cura</b></span>
+              <span id="abilityTag"><b>Utilidade</b></span>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li id="classLevel">
+        <div>5º Nível</div>
+        <ul id="classAbilityList">
+          <li id="classAbility">
+            <div>
+              <span id="abilityTitle">
+                Golpe Atordoante
+              </span>
+              <span id="resourceCost"><b>Custo:</b> 1 Ponto de Ki</span>
+              <button>Usar</button>
+            </div>
+            <div id="abilityDescription">
+              Quando você acertar uma outra criatura com um ataque corpo-a-corpo, você pode tentar fazer um ataque atordoante. O alvo deve ter sucesso em um teste de resistência de Constituição ou ficar <i>atordoado</i> até o final do seu próximo turno.
+            </div>
+            <div id="abilityTags" style="font-size: small;">
+              <span id="abilityTag"><b>Combate</b></span>
+              <span id="abilityTag"><b>Controle</b></span>
+            </div>
+          </li>
+          <li id="classAbility">
+            <div>
+              <span id="abilityTitle">
+                Mira Focada
+              </span>
+              <span id="resourceCost"><b>Custo:</b> 1-3 Pontos de Ki</span>
+              <button>Usar</button>
+            </div>
+            <div id="abilityDescription">
+              Quando você errar uma rolagem de ataque, você pode gastar de 1 a 3 Pontos de Ki para aumentar o resultado da rolagem em 2 para cada Ponto de Ki gasto, potencialmente levando o erro ao acerto.
+            </div>
+            <div id="abilityTags" style="font-size: small;">
+              <span id="abilityTag"><b>Combate</b></span>
+              <span id="abilityTag"><b>Utilidade</b></span>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+  </body>
+  
+</html>
