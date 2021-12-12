@@ -58,7 +58,7 @@ classController.addClassAbility(
   [tags.COMBAT_TAG, tags.DEFENSE_TAG, tags.NEGATION_TAG, tags.DAMAGE_TAG]
 );
 
-// Ataque Empoderado por Ki - 3º Nível
+// Ataque Empoderado por Ki - 3º Nível, opcional
 classController.addClassAbility(
   monkId,
   "Ataque Empoderado por Ki",
@@ -70,7 +70,7 @@ classController.addClassAbility(
   true
 );
 
-// Cura Acelerada - 4º Nível
+// Cura Acelerada - 4º Nível, opcional
 classController.addClassAbility(
   monkId,
   "Cura Acelerada",
@@ -93,7 +93,7 @@ classController.addClassAbility(
   [tags.COMBAT_TAG, tags.CONTROL_TAG, tags.DEBUFF_TAG]
 );
 
-// Mira Focada - 5º Nível
+// Mira Focada - 5º Nível, opcional
 classController.addClassAbility(
   monkId,
   "Mira Focada",

@@ -3,7 +3,7 @@
 var Character = require("../models/character");
 const classController = require("./classController");
 
-module.exports = class CharacterController {
+class CharacterController {
   #characters;
   #idCounter;
   #classController;
@@ -59,4 +59,8 @@ module.exports = class CharacterController {
 
     return newId;
   }
-};
+}
+
+const characterControllerInstance = new CharacterController();
+
+module.exports = characterControllerInstance;
