@@ -2,20 +2,17 @@ const ClassAbility = require("./classAbility");
 
 module.exports = class Class {
   constructor(id, name, abilities, resourceName, resourceAmountByLevel) {
-    if (typeof id === "undefined" || id < 0)
+    if (id === undefined || id < 0)
       throw new Error("A class cannot have a negative or undefined id");
     this.id = id;
     this.name = name;
-    if (typeof abilities === "undefined")
+    if (!abilities)
       throw new Error("A class must have a valid Array of abilities");
     this.abilities = abilities;
-    if (typeof resourceName === "undefined" || resourceName.length === 0)
+    if (!resourceName || resourceName.length === 0)
       throw new Error("A class must have a resource name");
     this.resourceName = resourceName;
-    if (
-      typeof resourceAmountByLevel === "undefined" ||
-      resourceAmountByLevel.length !== 20
-    )
+    if (!resourceAmountByLevel || resourceAmountByLevel.length !== 20)
       throw new Error(
         "A class must have resource amount by level progression list " +
           "for all 20 levels"
@@ -24,48 +21,8 @@ module.exports = class Class {
     this.abilityIdCounter = 0;
   }
 
-  get id() {
-    return this._id;
-  }
-
-  set id(id) {
-    this._id = id;
-  }
-
-  get name() {
-    return this._name;
-  }
-
-  set name(name) {
-    this._name = name;
-  }
-
-  get abilities() {
-    return this._abilities;
-  }
-
-  set abilities(abilities) {
-    this._abilities = abilities;
-  }
-
-  get resourceName() {
-    return this._resourceName;
-  }
-
-  set resourceName(newName) {
-    this._resourceName = newName;
-  }
-
-  get resourceAmountByLevelList() {
-    return this._resourceAmountByLevelList;
-  }
-
-  set resourceAmountByLevelList(resourceAmountByLevelList) {
-    this._resourceAmountByLevelList = resourceAmountByLevelList;
-  }
-
   getResourceAmountByLevel(level) {
-    return this._resourceAmountByLevelList[level - 1];
+    return this.resourceAmountByLevelList[level - 1];
   }
 
   addClassAbility(title, description, minCost, maxCost, unlockedLevel, tags) {
@@ -89,7 +46,7 @@ module.exports = class Class {
 
   updateAbility(id, modifiedClassAbility) {
     const classAbility = this.abilities.find((ability) => ability.id == id);
-    if (typeof classAbility === "undefined")
+    if (!classAbility)
       throw new Error("This id does not resolve to a class ability");
 
     const index = this.abilities.indexOf(classAbility);

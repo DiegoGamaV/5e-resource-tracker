@@ -1,17 +1,22 @@
 var express = require("express");
-const classController = require("../controllers/classController");
+const factory = require("../controllers/factory");
 var router = express.Router();
+const initializeMonk = require("../utils/classInitializer");
+
+// Initializes class list with Monk class
+initializeMonk();
 
 /* GET classes listing. */
 router.get("/", function (req, res, next) {
-  res.json(classController.classes);
+  console.log(factory.classController);
+  res.json(factory.classController.classes);
 });
 
 /* GET specific class. */
 router.get("/:id", function (req, res, next) {
-  const gameClass = classController.getClassById(req.params.id);
+  const gameClass = factory.classController.getClassById(req.params.id);
 
-  if (typeof gameClass === "undefined") res.sendStatus(404);
+  if (!gameClass) res.sendStatus(404);
   else res.json(gameClass);
 });
 

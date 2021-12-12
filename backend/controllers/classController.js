@@ -1,43 +1,28 @@
-"use strict";
-
 var ClassAbility = require("../models/classAbility");
 var Class = require("../models/class");
 
-class ClassController {
-  #classes;
-  #idCounter;
-
+module.exports = class ClassController {
   constructor() {
-    this.#classes = [];
-    this.#idCounter = 0;
-  }
-
-  get classes() {
-    return this.#classes;
+    this.classes = [];
+    this.idCounter = 0;
   }
 
   getClassById(id) {
-    return this.#classes.find((gameClass) => gameClass.id === id);
+    return this.classes.find((gameClass) => gameClass.id === id);
   }
 
-  addClass(
-    name,
-    resourceNameSingular,
-    resourceNamePlural,
-    resourceAmountByLevel
-  ) {
-    const newClassId = this.#generateId();
+  addClass(name, resourceName, resourceAmountByLevel) {
+    const newClassId = this.generateId();
 
     const newClass = new Class(
       newClassId,
       name,
       [],
-      resourceNameSingular,
-      resourceNamePlural,
+      resourceName,
       resourceAmountByLevel
     );
 
-    this.#classes.push(newClass);
+    this.classes.push(newClass);
 
     return newClassId;
   }
@@ -76,9 +61,9 @@ class ClassController {
     tags
   ) {
     gameClass = this.getClassById(classId);
-    const classAbility = this.#abilities.find((ability) => ability.id == id);
+    const classAbility = this.abilities.find((ability) => ability.id == id);
     if (typeof classAbility === "undefined")
-      throw new Error("This id does not resolve to a class ability");
+      throw new Error("This id " + id + " does not resolve to a class ability");
 
     newClassAbility = ClassAbility(
       abilityId,
@@ -93,14 +78,10 @@ class ClassController {
     gameClass.updateClassAbility(abilityId, newClassAbility);
   }
 
-  #generateId() {
-    newId = this.#idCounter;
-    this.#idCounter++;
+  generateId() {
+    const newId = this.idCounter;
+    this.idCounter++;
 
     return newId;
   }
-}
-
-const classControllerInstance = new ClassController();
-
-module.exports = classControllerInstance;
+};

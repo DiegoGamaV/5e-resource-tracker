@@ -1,31 +1,32 @@
 var express = require("express");
-const characterController = require("../controllers/characterController");
+const factory = require("../controllers/factory");
 var router = express.Router();
 
 /* GET characters listing. */
 router.get("/", function (req, res, next) {
-  res.json(characterController.characters);
+  res.json(factory.characterController.characters);
 });
 
 /* GET specific character. */
 router.get("/:id", function (req, res, next) {
-  const character = characterController.getCharacterById(req.params.id);
+  const character = factory.characterController.getCharacterById(req.params.id);
 
-  if (typeof character === "undefined") res.sendStatus(404);
+  if (!character) res.sendStatus(404);
   else res.json(character);
 });
 
 router.post("/", function (req, res, next) {
   try {
-    const id = characterController.addCharacter(
+    const id = factory.characterController.addCharacter(
       req.body.name,
       req.body.level,
       req.body.classId
     );
-    const character = characterController.getCharacterById(id);
+    const character = factory.characterController.getCharacterById(id);
 
     res.status(201).json(character);
   } catch (error) {
+    console.log(error);
     res.status(404).json(error.message);
   }
 });
