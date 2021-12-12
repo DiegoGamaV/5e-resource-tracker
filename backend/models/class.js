@@ -17,11 +17,33 @@ module.exports = class Class {
     resourceNamePlural,
     resourceAmountByLevel
   ) {
+    if (typeof id === "undefined" || id < 0)
+      throw new Error("A class cannot have a negative or undefined id");
     this.#id = id;
     this.#name = name;
+    if (typeof abilities === "undefined" || abilities.length === 0)
+      throw new Error("A class must have at least one ability");
     this.#abilities = abilities;
+    if (
+      typeof resourceNameSingular === "undefined" ||
+      resourceNameSingular.length === 0
+    )
+      throw new Error("A class must have a resource name");
     this.#resourceNameSingular = resourceNameSingular;
+    if (
+      typeof resourceNamePlural === "undefined" ||
+      resourceNamePlural.length === 0
+    )
+      throw new Error("A class must have a resource name");
     this.#resourceNamePlural = resourceNamePlural;
+    if (
+      typeof resourceAmountByLevel === "undefined" ||
+      resourceAmountByLevel.length !== 20
+    )
+      throw new Error(
+        "A class must have resource amount by level progression list " +
+          "for all 20 levels"
+      );
     this.#resourceAmountByLevelList = resourceAmountByLevel;
     this.#abilityIdCounter = 0;
   }

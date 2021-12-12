@@ -20,7 +20,7 @@ module.exports = class ClassAbility {
     isOptional = false
   ) {
     if (typeof id === "undefined" || id < 0)
-      throw new Error("A class ability cannot have a negative id");
+      throw new Error("A class ability cannot have a negative or undefined id");
     this.#id = id;
     this.#name = title;
     this.#description = description;
@@ -53,11 +53,11 @@ module.exports = class ClassAbility {
   }
 
   get id() {
-    this.#id;
+    return this.#id;
   }
 
   get name() {
-    this.#name;
+    return this.#name;
   }
 
   set name(name) {
@@ -65,7 +65,7 @@ module.exports = class ClassAbility {
   }
 
   get description() {
-    this.#description;
+    return this.#description;
   }
 
   set description(description) {
@@ -73,15 +73,17 @@ module.exports = class ClassAbility {
   }
 
   get minCost() {
-    this.#minCost;
+    return this.#minCost;
   }
 
   set minCost(cost) {
     if (cost > 0) this.#minCost = cost;
+    else
+      throw new Error("A class ability cannot cost less than zero resources");
   }
 
   get maxCost() {
-    this.#maxCost;
+    return this.#maxCost;
   }
 
   get costRange() {
@@ -91,18 +93,25 @@ module.exports = class ClassAbility {
 
   set maxCost(cost) {
     if ((cost > 0) & (cost > this.#minCost)) this.#maxCost = cost;
+    else throw new Error("The class ability cost range must be valid");
   }
 
   get unlockedLevel() {
-    this.#unlockedLevel;
+    return this.#unlockedLevel;
   }
 
   set unlockedLevel(unlockedLevel) {
-    this.#unlockedLevel = unlockedLevel;
+    if (unlockedLevel >= 1 && unlockedLevel <= 20)
+      this.#unlockedLevel = unlockedLevel;
+    else {
+      throw new Error(
+        "A class ability must be unlocked in a valid game level: [1,20]"
+      );
+    }
   }
 
   get tags() {
-    this.#tags;
+    return this.#tags;
   }
 
   set tags(tags) {
