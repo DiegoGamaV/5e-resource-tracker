@@ -23,10 +23,10 @@ router.post("/", function (req, res, next) {
       req.body.classId
     );
     const character = factory.characterController.getCharacterById(id);
+    console.log(character.resourceAmount);
 
     res.status(201).json(character);
   } catch (error) {
-    console.log(error);
     res.status(404).json(error.message);
   }
 });

@@ -12,7 +12,7 @@ module.exports = class Character {
       );
     this.level = level;
     this.class = gameClass;
-    this.resourceAmount = this.class.getResourceAmountByLevel();
+    this.resourceAmount = this.getResourceAmountByLevel();
   }
 
   getClassName() {
