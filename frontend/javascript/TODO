@@ -1,0 +1,4 @@
+- Quebrar página de classe em componentes
+- Criar props para alimentar select de nível
+- Criar props para alimentar subclasses
+- Criar props para alimentar lista de abilidades de classe
