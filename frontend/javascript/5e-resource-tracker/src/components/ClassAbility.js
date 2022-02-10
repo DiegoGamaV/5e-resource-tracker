@@ -14,7 +14,7 @@ function ClassAbility(props) {
       <div id="abilityDescription">{props.description}</div>
       <div id="abilityTags">
         {props.tags.map((tag) => (
-          <span id="abilityTag">
+          <span id="abilityTag" key={tag}>
             <b>{tag}</b>
           </span>
         ))}

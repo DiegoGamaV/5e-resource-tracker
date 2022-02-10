@@ -11,7 +11,7 @@ function ClassToolbar(props) {
         {props.specializationName}
         <span>
           {props.subclasses.map((subclass) => (
-            <button>{subclass}</button>
+            <button key={subclass}>{subclass}</button>
           ))}
         </span>
       </span>

@@ -6,7 +6,7 @@ function ClassLevel(props) {
       <div>{props.level}º Nível</div>
       <ul>
         {props.abilities.map((ability) => (
-          <li>
+          <li key={ability.name}>
             <ClassAbility
               name={ability.name}
               minCost={ability.minCost}
