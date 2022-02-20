@@ -7,11 +7,13 @@ function ClassToolbar(props) {
 
   return (
     <div className="ClassToolbar">
-      <span>
+      <span data-testid="specializationName">
         {props.specializationName}
         <span>
           {props.subclasses.map((subclass) => (
-            <button key={subclass}>{subclass}</button>
+            <button data-testid="subclassButton" key={subclass}>
+              {subclass}
+            </button>
           ))}
         </span>
       </span>
@@ -20,15 +22,16 @@ function ClassToolbar(props) {
         <select
           onChange={(e) => props.onChangeLevel(parseInt(e.target.value))}
           value={props.currentLevel}
+          data-testid="levelSelect"
         >
           {levelOptions.map((level) => (
-            <option key={level} value={level}>
+            <option data-testid="levelOption" key={level} value={level}>
               {level}
             </option>
           ))}
         </select>
       </span>
-      <div>
+      <div data-testid="classResource">
         {props.resourceName}:{" "}
         {props.resourceAmountByLevel[props.currentLevel - 1]}
       </div>

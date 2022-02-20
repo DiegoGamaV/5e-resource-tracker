@@ -1,4 +1,4 @@
-import ClassPage from "./components/ClassPage";
+import ClassPage from "./pages/ClassPage";
 
 function App() {
   return <ClassPage></ClassPage>;

@@ -1,8 +1,8 @@
 import React from "react";
 
-import ClassHeader from "./ClassHeader";
-import ClassToolbar from "./ClassToolbar";
-import ClassLevel from "./ClassLevel";
+import ClassHeader from "../components/ClassHeader";
+import ClassToolbar from "../components/ClassToolbar";
+import ClassLevel from "../components/ClassLevel";
 
 import defaultClass from "../data/default";
 import separateAbilitiesByLevel from "../utils/abilityClassUtils";
@@ -15,12 +15,12 @@ function ClassPage() {
   );
 
   const [subclasses, setSubclasses] = React.useState([
-    "Caminho da Mão Aberta",
-    "Caminho das Sombras",
-    "Caminho dos Quatro Elementos",
+    // "Caminho da Mão Aberta",
+    // "Caminho das Sombras",
+    // "Caminho dos Quatro Elementos",
   ]);
 
-  const [currentLevel, setCurrentLevel] = React.useState(20);
+  const [currentLevel, setCurrentLevel] = React.useState();
 
   React.useEffect(() => {
     fetch("http://localhost:3001/classes/?id=0", {
