@@ -61,7 +61,7 @@ function CharacterCreationToolbar() {
 
   function handleOnSelectSubclass(selectedSubclassId) {
     const selectedSubclass = subclassList.find(
-      (subclass) => subclass.selectedSubclassId
+      (subclass) => subclass.id === selectedSubclassId
     );
 
     setCurrentSubclass(selectedSubclass);
