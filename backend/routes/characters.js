@@ -20,10 +20,10 @@ router.post("/", function (req, res, next) {
     const id = factory.characterController.addCharacter(
       req.body.name,
       req.body.level,
-      req.body.classId
+      req.body.classId,
+      req.body.specialization
     );
     const character = factory.characterController.getCharacterById(id);
-    console.log(character.resourceAmount);
 
     res.status(201).json(character);
   } catch (error) {

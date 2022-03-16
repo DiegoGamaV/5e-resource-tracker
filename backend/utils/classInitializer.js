@@ -11,7 +11,8 @@ function initializeMonk() {
   const monkId = factory.classController.addClass(
     "Monge",
     "Pontos de Ki",
-    kiPointsProgression
+    kiPointsProgression,
+    "Tradições Monásticas"
   );
 
   // Rajada de Golpes - 2º Nível
@@ -45,6 +46,17 @@ function initializeMonk() {
     undefined,
     2,
     [tags.COMBAT, tags.DEFENSE, tags.BUFF, tags.MOVEMENT]
+  );
+
+  // Característica da Tradição Monástica - 3º Nível
+  factory.classController.addClassAbility(
+    monkId,
+    "Habilidade de Subclasse",
+    "",
+    0,
+    undefined,
+    3,
+    []
   );
 
   // Refletir Projéteis - 3º Nível
@@ -105,6 +117,28 @@ function initializeMonk() {
     true
   );
 
+  // Característica da Tradição Monástica - 6º Nível
+  factory.classController.addClassAbility(
+    monkId,
+    "Habilidade de Subclasse",
+    "",
+    0,
+    undefined,
+    6,
+    []
+  );
+
+  // Característica da Tradição Monástica - 11º Nível
+  factory.classController.addClassAbility(
+    monkId,
+    "Habilidade de Subclasse",
+    "",
+    0,
+    undefined,
+    11,
+    []
+  );
+
   // Alma de Diamante - 14º Nível
   factory.classController.addClassAbility(
     monkId,
@@ -116,6 +150,17 @@ function initializeMonk() {
     [tags.COMBAT, tags.DEFENSE]
   );
 
+  // Característica da Tradição Monástica - 17º Nível
+  factory.classController.addClassAbility(
+    monkId,
+    "Habilidade de Subclasse",
+    "",
+    0,
+    undefined,
+    17,
+    []
+  );
+
   // Corpo Vazio - 18º Nível
   factory.classController.addClassAbility(
     monkId,
@@ -123,11 +168,107 @@ function initializeMonk() {
     "Você pode usar sua ação para gastar 4 Pontos de Ki e ficar invisível por 1 minuto. Durante esse tempo você tem resistência a todos os tipos de dano, exceto dano de energia.\nAdicionalmente você pode gastar 8 Pontos de Ki para conjurar a magia Projeção Astral, sem a necessidade de componentes materiais. Ao fazer isso, você não pode levar outras criaturas com você.",
     4,
     8,
-    14,
+    18,
     [tags.COMBAT, tags.DEFENSE]
   );
 
   console.log("Monk class initialized");
+
+  const openHandId = factory.classController.addSubclass("Mão Aberta", monkId);
+
+  // Técnica da Mão Aberta - 3º Nível
+  factory.classController.addSubclassAbility(
+    openHandId,
+    "Técnica da Mão Aberta",
+    "Você pode manipular o ki do seu oponente enquanto canaliza o seu próprio. Sempre que você acertar uma criatura com um dos ataques garantidos pela Rajada de Golpes, você pode impor um dos seguintes efeitos no alvo.\n-Ele deve ter sucesso em um teste de resistência de Destreza ou ficar caído.\nEle deve ter resistência de Força. Se fracassar, você pode empurrá-lo para até 4,5 metros de você.\nEle não pode ter reações até o final do seu próximo turno.",
+    0,
+    undefined,
+    3,
+    [tags.COMBAT, tags.CONTROL, tags.DEBUFF]
+  );
+
+  // Completude do Corpo - 6º Nível
+  factory.classController.addSubclassAbility(
+    openHandId,
+    "Completude do Corpo",
+    "Com uma ação, você recupera pontos de vida equivalentes a três vezes o seu nível. Você deve finalizar um descanso longo antes de utilizar essa característica novamente.",
+    0,
+    undefined,
+    6,
+    [tags.HEALING]
+  );
+
+  // Tranquilidade - 11º Nível
+  factory.classController.addSubclassAbility(
+    openHandId,
+    "Tranquilidade",
+    "No final de um descanso longo, você ganha o efeito da magia santuário que dura até o começo do seu próximo descanso longo (a magia pode acabar mais cedo normalmente). A CD de resistência para a magia é 8 + seu modificador de Sabedoria + seu bônus de proficiência.",
+    0,
+    undefined,
+    11,
+    [tags.CONTROL, tags.DEFENSE]
+  );
+
+  // Palma Trêmula - 17º Nível
+  factory.classController.addSubclassAbility(
+    openHandId,
+    "Palma Trêmula",
+    "Quando você acerta uma criatura com um ataque desarmado, você pode criar vibrações imperceptíveis que duram por um número de dias igual a seu nível de monge. As vibrações são inofensivas a não ser que você use sua ação para acabá-las. Para isso você e o alvo devem estar no mesmo plano de existência. Ao fazer isso, a criatura deve fazer um teste de resistência de Constituição. Se fracassar, ela cai a 0 pontos de vida. Se tiver sucesso, ela recebe 10d10 de dano necrótico.\nApenas uma criatura pode estar sob efeito dessa característica por vez. Você pode escolher terminar as vibrações de forma inofensiva sem precisar usar uma ação.",
+    3,
+    undefined,
+    17,
+    [tags.CONTROL, tags.DAMAGE]
+  );
+
+  console.log("Open Hand subclass initialized");
+
+  const sombraId = factory.classController.addSubclass("Sombra", monkId);
+
+  // Artes Sombrias - 3º Nível
+  factory.classController.addSubclassAbility(
+    sombraId,
+    "Artes Sombrias",
+    "Você pode usar sua ação para conjurar escuridão, visão no escuro, passos sem rastros ou siêncio sem precisar de componentes materiais.",
+    2,
+    undefined,
+    3,
+    [tags.CONTROL, tags.DEBUFF, tags.BUFF, tags.MOVEMENT]
+  );
+
+  // Passo Sombrio - 6º Nível
+  factory.classController.addSubclassAbility(
+    sombraId,
+    "Passo Sombrio",
+    "Você pode usar sua ação bônus para teletransportar-se a até 18 metros para um espaço desocupado que possa ver, desde que você e o destino estejam em penumbra ou escuridão. Após fazer isso você ganha vantagem no primeiro ataque corpo-a-corpo que fizer até o fim do turno.",
+    0,
+    undefined,
+    6,
+    [tags.COMBAT, tags.MOVEMENT]
+  );
+
+  // Manto de Sombras - 11º Nível
+  factory.classController.addSubclassAbility(
+    sombraId,
+    "Manto de Sombras",
+    "Quando estiver sob penumbra ou escuridão, você pode usar sua ação para ficar invisível. Você permanece invisível até atacar, conjurar uma magia ou estar sob luz plena",
+    0,
+    undefined,
+    11,
+    [tags.BUFF, tags.DEFENSE, tags.CONTROL]
+  );
+
+  // Oportunista - 17º Nível
+  factory.classController.addSubclassAbility(
+    sombraId,
+    "Oportunista",
+    "Quando uma criatura a 1,5 metros de você for acertada por um ataque feito por outra criatura que não seja você, você pode usar sua reação para atacar aquela criatura.",
+    0,
+    undefined,
+    17,
+    [tags.COMBAT, tags.DAMAGE]
+  );
+
+  console.log("Shadow subclass initialized");
 }
 
 module.exports = initializeMonk;

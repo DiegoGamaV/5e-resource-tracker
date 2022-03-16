@@ -11,8 +11,15 @@ function ClassToolbar(props) {
         {props.specializationName}
         <span>
           {props.subclasses.map((subclass) => (
-            <button data-testid="subclassButton" key={subclass}>
-              {subclass}
+            <button
+              data-testid="subclassButton"
+              key={subclass.id}
+              value={subclass.id}
+              onClick={(e) =>
+                props.onChangeSubclass(parseInt(e.target.value) - 1)
+              }
+            >
+              {subclass.name}
             </button>
           ))}
         </span>

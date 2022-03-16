@@ -8,7 +8,6 @@ initializeMonk();
 
 /* GET classes listing. */
 router.get("/", function (req, res, next) {
-  console.log(factory.classController);
   res.json(factory.classController.classes);
 });
 
@@ -18,6 +17,24 @@ router.get("/:id", function (req, res, next) {
 
   if (!gameClass) res.sendStatus(404);
   else res.json(gameClass);
+});
+
+/* GET subclasses listing for a specific class. */
+router.get("/:id/subclasses", function (req, res, next) {
+  const subclasses = factory.classController.getSubclassByClassId(
+    parseInt(req.params.id)
+  );
+
+  if (!subclasses) res.sendStatus(404);
+  else res.json(subclasses);
+});
+
+/* GET subclasses listing. */
+router.get("/subclasses", function (req, res, next) {
+  const subclasses = factory.classController.subclasses;
+
+  if (!subclasses) res.sendStatus(404);
+  else res.json(subclasses);
 });
 
 module.exports = router;

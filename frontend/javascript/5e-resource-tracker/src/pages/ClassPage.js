@@ -5,22 +5,21 @@ import ClassToolbar from "../components/ClassToolbar";
 import ClassLevel from "../components/ClassLevel";
 
 import defaultClass from "../data/default";
-import separateAbilitiesByLevel from "../utils/abilityClassUtils";
+import formatAbilitiesByLevel from "../utils/abilityClassUtils";
 
 function ClassPage() {
   const [classInfo, setClassInfo] = React.useState(defaultClass);
+  const [specializationName, setSpecializationName] = React.useState("");
+  const [subclasses, setSubclasses] = React.useState([]);
+  const [currentLevel, setCurrentLevel] = React.useState(20);
+  const [currentSubclass, setCurrentSubclass] = React.useState(undefined);
 
-  const [specializationName, setSpecializationName] = React.useState(
-    "Tradições Monásticas"
-  );
+  function changeSubclass(subclassIndex) {
+    const subclass = subclasses[subclassIndex];
 
-  const [subclasses, setSubclasses] = React.useState([
-    // "Caminho da Mão Aberta",
-    // "Caminho das Sombras",
-    // "Caminho dos Quatro Elementos",
-  ]);
-
-  const [currentLevel, setCurrentLevel] = React.useState();
+    if (currentSubclass === subclass) setCurrentSubclass(undefined);
+    else setCurrentSubclass(subclass);
+  }
 
   React.useEffect(() => {
     fetch("http://localhost:3001/classes/?id=0", {
@@ -32,11 +31,29 @@ function ClassPage() {
       .then((res) => res.json())
       .then((response) => {
         setClassInfo(response[0]);
+        setSpecializationName(response[0].specializationName);
       })
       .catch((error) => console.log(error));
   }, [classInfo.id]);
 
-  const abilitiesByLevel = separateAbilitiesByLevel(classInfo.abilities);
+  React.useEffect(() => {
+    fetch("http://localhost:3001/classes/" + classInfo.id + "/subclasses", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        setSubclasses(response);
+      })
+      .catch((error) => console.log(error));
+  }, [classInfo.id]);
+
+  const abilitiesByLevel = formatAbilitiesByLevel(
+    classInfo.abilities,
+    currentSubclass
+  );
 
   return (
     <>
@@ -45,6 +62,7 @@ function ClassPage() {
       <ClassToolbar
         specializationName={specializationName}
         subclasses={subclasses}
+        onChangeSubclass={changeSubclass}
         resourceAmountByLevel={classInfo.resourceAmountByLevelList}
         resourceName={classInfo.resourceName}
         currentLevel={currentLevel}

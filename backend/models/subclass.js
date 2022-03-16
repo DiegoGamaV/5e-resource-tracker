@@ -1,14 +1,7 @@
 const ClassAbility = require("./classAbility");
 
-module.exports = class Class {
-  constructor(
-    id,
-    name,
-    abilities,
-    resourceName,
-    resourceAmountByLevel,
-    specializationName
-  ) {
+module.exports = class Subclass {
+  constructor(id, name, abilities, gameClassId) {
     if (id === undefined || id < 0)
       throw new Error("A class cannot have a negative or undefined id");
     this.id = id;
@@ -16,24 +9,18 @@ module.exports = class Class {
     if (!abilities)
       throw new Error("A class must have a valid Array of abilities");
     this.abilities = abilities;
-    if (!resourceName || resourceName.length === 0)
-      throw new Error("A class must have a resource name");
-    this.resourceName = resourceName;
-    if (!resourceAmountByLevel || resourceAmountByLevel.length !== 20)
-      throw new Error(
-        "A class must have resource amount by level progression list " +
-          "for all 20 levels"
-      );
-    this.resourceAmountByLevelList = resourceAmountByLevel;
     this.abilityIdCounter = 0;
-    this.specializationName = specializationName;
+    this.classId = gameClassId;
   }
 
-  getResourceAmountByLevel(level) {
-    return this.resourceAmountByLevelList[level - 1];
-  }
-
-  addClassAbility(title, description, minCost, maxCost, unlockedLevel, tags) {
+  addSubclassAbility(
+    title,
+    description,
+    minCost,
+    maxCost,
+    unlockedLevel,
+    tags
+  ) {
     const classAbility = new ClassAbility(
       this.generateId(),
       title,
@@ -48,7 +35,7 @@ module.exports = class Class {
     this.abilities.splice(index + 1, 0, classAbility);
   }
 
-  removeClassAbility(index) {
+  removeSubclassAbility(index) {
     this.abilities.splice(index, 1);
   }
 
@@ -65,10 +52,6 @@ module.exports = class Class {
     } else {
       this.abilities[index] = modifiedClassAbility;
     }
-  }
-
-  getAbilitiesByTags(tags) {
-    return this.abilities.filter((ability) => !tags.includes(a));
   }
 
   getLastAbilityIndexByLevel(level) {

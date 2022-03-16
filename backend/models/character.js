@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = class Character {
-  constructor(id, name, level, gameClass) {
+  constructor(id, name, level, gameClass, specialization) {
     if (id === undefined || id < 0)
       throw new Error("A character cannot have a negative or undefined id");
     this.id = id;
@@ -12,6 +12,7 @@ module.exports = class Character {
       );
     this.level = level;
     this.class = gameClass;
+    this.specialization = specialization;
     this.resourceAmount = this.getResourceAmountByLevel();
   }
 

@@ -1,9 +1,11 @@
 var ClassAbility = require("../models/classAbility");
 var Class = require("../models/class");
+var Subclass = require("../models/subclass");
 
 module.exports = class ClassController {
   constructor() {
     this.classes = [];
+    this.subclasses = [];
     this.idCounter = 0;
   }
 
@@ -11,20 +13,39 @@ module.exports = class ClassController {
     return this.classes.find((gameClass) => gameClass.id === id);
   }
 
-  addClass(name, resourceName, resourceAmountByLevel) {
-    const newClassId = this.generateId();
+  getSubclassById(id) {
+    return this.subclasses.find((subclass) => subclass.id === id);
+  }
+
+  getSubclassByClassId(classId) {
+    return this.subclasses.filter((subclass) => subclass.classId === classId);
+  }
+
+  addClass(name, resourceName, resourceAmountByLevel, specializationName) {
+    const newClassId = this.generateClassId();
 
     const newClass = new Class(
       newClassId,
       name,
       [],
       resourceName,
-      resourceAmountByLevel
+      resourceAmountByLevel,
+      specializationName
     );
 
     this.classes.push(newClass);
 
     return newClassId;
+  }
+
+  addSubclass(name, gameClassId) {
+    const newSubclassId = this.generateSubclassId();
+
+    const newSubclass = new Subclass(newSubclassId, name, [], gameClassId);
+
+    this.subclasses.push(newSubclass);
+
+    return newSubclassId;
   }
 
   addClassAbility(
@@ -40,6 +61,29 @@ module.exports = class ClassController {
     const gameClass = this.getClassById(id);
 
     gameClass.addClassAbility(
+      title,
+      description,
+      minCost,
+      maxCost,
+      unlockedLevel,
+      tags,
+      isOptional
+    );
+  }
+
+  addSubclassAbility(
+    id,
+    title,
+    description,
+    minCost,
+    maxCost,
+    unlockedLevel,
+    tags,
+    isOptional = false
+  ) {
+    const subclass = this.getSubclassById(id);
+
+    subclass.addSubclassAbility(
       title,
       description,
       minCost,
@@ -78,7 +122,14 @@ module.exports = class ClassController {
     gameClass.updateClassAbility(abilityId, newClassAbility);
   }
 
-  generateId() {
+  generateClassId() {
+    const newId = this.idCounter;
+    this.idCounter++;
+
+    return newId;
+  }
+
+  generateSubclassId() {
     const newId = this.idCounter;
     this.idCounter++;
 
