@@ -1,11 +1,11 @@
 import React from "react";
 
-import ClassHeader from "../components/ClassHeader";
-import ClassToolbar from "../components/ClassToolbar";
-import ClassLevel from "../components/ClassLevel";
+import ClassHeader from "../components/class/ClassHeader";
+import ClassToolbar from "../components/class/ClassToolbar";
+import ClassLevel from "../components/class/ClassLevel";
 
 import defaultClass from "../data/default";
-import formatAbilitiesByLevel from "../utils/abilityClassUtils";
+import { formatAbilitiesByLevel } from "../utils/abilityClassUtils";
 
 function ClassPage() {
   const [classInfo, setClassInfo] = React.useState(defaultClass);

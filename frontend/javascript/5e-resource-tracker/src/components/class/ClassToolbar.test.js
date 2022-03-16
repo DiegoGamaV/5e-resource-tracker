@@ -1,6 +1,6 @@
-import { fireEvent, getByTestId, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
 import ClassToolbar from "./ClassToolbar";
 
 let container = null;
@@ -15,13 +15,22 @@ afterEach(() => {
   container = null;
 });
 
-function verifySelectedLevelOption(expectedSelectedIndex, levelOptions) {
-  expect(levelOptions[expectedSelectedIndex - 1].selected).toBeTruthy();
-  const nonSelectedOptions = levelOptions.filter(
-    (element, index) => index !== expectedSelectedIndex - 1
+function verifySelectedLevelOption(expectedSelectedLevel, levelOptions) {
+  const levels = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+  ];
+
+  expect(
+    screen.getByRole("option", { name: levels[expectedSelectedLevel - 1] })
+      .selected
+  ).toBe(true);
+
+  const nonSelectedLevels = levels.filter(
+    (level) => level !== expectedSelectedLevel
   );
-  nonSelectedOptions.forEach((option) => {
-    expect(option.selected).toBeFalsy();
+
+  nonSelectedLevels.forEach((level) => {
+    expect(screen.getByRole("option", { name: level }).selected).toBe(false);
   });
 }
 
@@ -118,46 +127,47 @@ describe("Base render", () => {
     );
   });
 
-  // test("renders toolbar with class resources and dynamic level", () => {
-  //   const RESOURCE_NAME = "Resource";
-  //   const RESOURCE_AMOUNT_BY_LEVEL = [...Array(20).keys()];
-  //   let current_level = 5;
+  test("renders toolbar with class resources and dynamic level", () => {
+    const RESOURCE_NAME = "Resource";
+    const RESOURCE_AMOUNT_BY_LEVEL = [...Array(20).keys()];
+    let current_level = 5;
 
-  //   render(
-  //     <ClassToolbar
-  //       resourceName={RESOURCE_NAME}
-  //       resourceAmountByLevel={RESOURCE_AMOUNT_BY_LEVEL}
-  //       currentLevel={current_level}
-  //       subclasses={[]}
-  //       onChangeLevel={(newLevel) => {
-  //         current_level = newLevel;
-  //       }}
-  //     ></ClassToolbar>,
-  //     container
-  //   );
+    render(
+      <ClassToolbar
+        resourceName={RESOURCE_NAME}
+        resourceAmountByLevel={RESOURCE_AMOUNT_BY_LEVEL}
+        currentLevel={current_level}
+        subclasses={[]}
+        onChangeLevel={(newLevel) => {
+          current_level = newLevel;
+        }}
+      ></ClassToolbar>,
+      container
+    );
 
-  //   const specializationName = screen.getByTestId("specializationName");
-  //   expect(specializationName.textContent).toBe("");
+    const specializationName = screen.getByTestId("specializationName");
+    expect(specializationName.textContent).toBe("");
 
-  //   let levelOptions = screen.getAllByTestId("levelOption");
-  //   verifySelectedLevelOption(current_level, levelOptions);
+    let levelOptions = screen.getAllByTestId("levelOption");
+    verifySelectedLevelOption(current_level, levelOptions);
 
-  //   const classResource = screen.getByTestId("classResource");
-  //   expect(classResource.textContent).toBe(
-  //     RESOURCE_NAME + ": " + RESOURCE_AMOUNT_BY_LEVEL[current_level - 1]
-  //   );
+    const classResource = screen.getByTestId("classResource");
+    expect(classResource.textContent).toBe(
+      RESOURCE_NAME + ": " + RESOURCE_AMOUNT_BY_LEVEL[current_level - 1]
+    );
 
-  //   const levelSelect = screen.getByTestId("levelSelect");
-  //   fireEvent.change(levelSelect, {
-  //     target: { value: 17 },
-  //   });
-  //   levelOptions = screen.getAllByTestId("levelOption");
+    const levelSelect = screen.getByTestId("levelSelect");
+    userEvent.selectOptions(levelSelect, ["17"]);
 
-  //   console.log(current_level);
+    console.log(levelOptions[17 - 1].selected);
+    //levelOptions = screen.getAllByTestId("levelOption");
 
-  //   verifySelectedLevelOption(current_level, levelOptions);
-  //   expect(classResource.textContent).toBe(
-  //     RESOURCE_NAME + ": " + RESOURCE_AMOUNT_BY_LEVEL[current_level - 1]
-  //   );
-  // });
+    console.log(current_level);
+    expect(screen.getByRole("option", { name: "17" }).selected).toBe(true);
+
+    verifySelectedLevelOption(current_level, levelOptions);
+    expect(classResource.textContent).toBe(
+      RESOURCE_NAME + ": " + RESOURCE_AMOUNT_BY_LEVEL[current_level - 1]
+    );
+  });
 });

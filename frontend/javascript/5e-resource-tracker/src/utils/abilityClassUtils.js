@@ -51,4 +51,12 @@ function getSubclassAbilityIndex(abilities) {
   return subclassAbilityIndex;
 }
 
-export default formatAbilitiesByLevel;
+function getLevelOfFirstSubclassAbility(abilities) {
+  const subclassAbility = abilities.find(
+    (ability) => ability.name === "Habilidade de Subclasse"
+  );
+
+  return subclassAbility ? subclassAbility.unlockedLevel : 0;
+}
+
+export { formatAbilitiesByLevel, getLevelOfFirstSubclassAbility };
