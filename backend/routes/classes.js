@@ -11,9 +11,16 @@ router.get("/", function (req, res, next) {
   res.json(factory.classController.classes);
 });
 
+/* GET subclasses listing. */
+router.get("/subclasses", function (req, res, next) {
+  res.json(factory.classController.subclasses);
+});
+
 /* GET specific class. */
 router.get("/:id", function (req, res, next) {
-  const gameClass = factory.classController.getClassById(req.params.id);
+  const gameClass = factory.classController.getClassById(
+    parseInt(req.params.id)
+  );
 
   if (!gameClass) res.sendStatus(404);
   else res.json(gameClass);
@@ -24,14 +31,6 @@ router.get("/:id/subclasses", function (req, res, next) {
   const subclasses = factory.classController.getSubclassByClassId(
     parseInt(req.params.id)
   );
-
-  if (!subclasses) res.sendStatus(404);
-  else res.json(subclasses);
-});
-
-/* GET subclasses listing. */
-router.get("/subclasses", function (req, res, next) {
-  const subclasses = factory.classController.subclasses;
 
   if (!subclasses) res.sendStatus(404);
   else res.json(subclasses);

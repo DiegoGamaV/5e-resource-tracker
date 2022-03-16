@@ -84,6 +84,14 @@ module.exports = class Class {
     return index;
   }
 
+  getLevelOfFirstSubclassAbility() {
+    const subclassAbility = this.abilities.find(
+      (ability) => ability.name === "Habilidade de Subclasse"
+    );
+
+    return subclassAbility ? subclassAbility.unlockedLevel : 0;
+  }
+
   generateId() {
     const newId = this.abilityIdCounter;
     this.abilityIdCounter++;

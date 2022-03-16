@@ -10,6 +10,7 @@ module.exports = class CharacterController {
   }
 
   getCharacterById(id) {
+    console.log(id);
     return this.characters.find((character) => character.id === id);
   }
 
@@ -18,9 +19,24 @@ module.exports = class CharacterController {
     if (gameClass === undefined)
       throw new Error("The id " + id + " does not resolve to a class");
 
-    const subclass = this.getSubclassById(specializationId);
-    if (subclass === undefined)
-      throw new Error("The id " + id + " does not resolve to a subclass");
+    const specializationLevel = gameClass.getLevelOfFirstSubclassAbility();
+    if (level >= specializationLevel && !specializationId) {
+      throw new Error(
+        "A valid specializationId must be provided for a " +
+          gameClass.name +
+          " character at level " +
+          specializationLevel +
+          " or higher, and this character is level " +
+          level
+      );
+    }
+
+    let subclass = undefined;
+    if (specializationId) {
+      subclass = this.getSubclassById(specializationId);
+      if (subclass === undefined)
+        throw new Error("The id " + id + " does not resolve to a subclass");
+    }
 
     const newCharacterId = this.generateId();
     const character = new Character(

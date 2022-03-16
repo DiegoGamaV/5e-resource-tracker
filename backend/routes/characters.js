@@ -9,7 +9,9 @@ router.get("/", function (req, res, next) {
 
 /* GET specific character. */
 router.get("/:id", function (req, res, next) {
-  const character = factory.characterController.getCharacterById(req.params.id);
+  const character = factory.characterController.getCharacterById(
+    parseInt(req.params.id)
+  );
 
   if (!character) res.sendStatus(404);
   else res.json(character);
@@ -21,7 +23,7 @@ router.post("/", function (req, res, next) {
       req.body.name,
       req.body.level,
       req.body.classId,
-      req.body.specialization
+      req.body.specializationId
     );
     const character = factory.characterController.getCharacterById(id);
 
