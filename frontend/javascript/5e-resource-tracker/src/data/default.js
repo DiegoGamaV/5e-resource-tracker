@@ -7,4 +7,12 @@ const defaultClass = {
   abilityIdCounter: 0,
 };
 
-export default defaultClass;
+const defaultCharacter = {
+  id: -1,
+  name: "...",
+  level: 1,
+  class: defaultClass,
+  resourceAmount: 0,
+};
+
+export { defaultClass, defaultCharacter };

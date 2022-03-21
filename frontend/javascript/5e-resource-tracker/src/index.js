@@ -4,15 +4,17 @@ import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import CharacterPage from "./pages/CharacterPage";
+import CharactersPage from "./pages/CharactersPage";
 import App from "./App";
+import CharacterDetailPage from "./pages/CharacterDetailPage";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
         <Route path="/" element={<App />}></Route>
-        <Route path="/character" element={<CharacterPage />}></Route>
+        <Route path="/character" element={<CharactersPage />}></Route>
+        <Route path="/character/:id" element={<CharacterDetailPage />}></Route>
       </Routes>
     </Router>
   </React.StrictMode>,

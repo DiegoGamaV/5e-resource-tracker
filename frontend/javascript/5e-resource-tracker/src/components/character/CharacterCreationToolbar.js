@@ -1,9 +1,9 @@
 import React from "react";
 
-import defaultClass from "../../data/default";
+import { defaultClass } from "../../data/default";
 import { getLevelOfFirstSubclassAbility } from "../../utils/abilityClassUtils";
 
-function CharacterCreationToolbar() {
+function CharacterCreationToolbar(props) {
   const levelOptions = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   ];
@@ -94,21 +94,7 @@ function CharacterCreationToolbar() {
 
       if (currentSubclass) character.specializationId = currentSubclass.id;
 
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(character),
-      };
-
-      fetch("http://localhost:3001/characters/", requestOptions)
-        .then((response) => {
-          if (response.ok) alert("Personagem criado!");
-          else alert("Falha na requisição");
-        })
-        .catch((error) => {
-          alert("Ocorreu um erro no envio");
-          console.log(error);
-        });
+      props.addCharacterHook(character);
     }
 
     event.preventDefault();
@@ -119,7 +105,7 @@ function CharacterCreationToolbar() {
       <div>
         <form onSubmit={createCharacter}>
           <span>
-            <label for="name">Nome</label>
+            <label htmlFor="name">Nome</label>
             <input
               type="text"
               id="name"
@@ -129,7 +115,7 @@ function CharacterCreationToolbar() {
             ></input>
           </span>
           <span>
-            <label for="classes">Classe</label>
+            <label htmlFor="classes">Classe</label>
             <select
               name="classes"
               id="classes"
@@ -145,7 +131,7 @@ function CharacterCreationToolbar() {
             </select>
           </span>
           <span>
-            <label for="level">Nível</label>
+            <label htmlFor="level">Nível</label>
             <select
               name="level"
               id="level"
@@ -160,7 +146,7 @@ function CharacterCreationToolbar() {
           </span>
           {IsItTimeToSpecialize() ? (
             <span>
-              <label for="subclasses">
+              <label htmlFor="subclasses">
                 {currentClass.specializationName
                   ? currentClass.specializationName
                   : "Subclasse"}

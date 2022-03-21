@@ -4,7 +4,7 @@ import ClassHeader from "../components/class/ClassHeader";
 import ClassToolbar from "../components/class/ClassToolbar";
 import ClassLevel from "../components/class/ClassLevel";
 
-import defaultClass from "../data/default";
+import { defaultClass } from "../data/default";
 import { formatAbilitiesByLevel } from "../utils/abilityClassUtils";
 
 function ClassPage() {
