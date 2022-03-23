@@ -24,15 +24,11 @@ function formatAbilitiesByLevel(classAbilities, subclass) {
       );
 
       if (subclassProgressionIndex >= 0) {
-        console.log(classAbilitiesByLevel[level]);
-
         classAbilitiesByLevel[level].splice(subclassProgressionIndex, 1);
 
         subclassAbilitiesByLevel[level].forEach((subclassAbility) => {
           classAbilitiesByLevel[level].unshift(subclassAbility);
         });
-
-        console.log(classAbilitiesByLevel[level]);
       }
     });
   }

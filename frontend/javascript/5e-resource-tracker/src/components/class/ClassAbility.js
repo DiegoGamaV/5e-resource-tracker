@@ -1,3 +1,5 @@
+import ClassAbilityUseButton from "./ClassAbilityUseButton";
+
 function ClassAbility(props) {
   return (
     <div className="ClassAbility">
@@ -9,7 +11,25 @@ function ClassAbility(props) {
             ? props.minCost + " - " + props.maxCost
             : props.minCost}
         </span>
-        <button>Usar</button>
+        {props.useAbility ? (
+          <>
+            {props.maxCost ? (
+              <ClassAbilityUseButton
+                minCost={props.minCost}
+                maxCost={props.maxCost}
+                resourceName={props.resourceName}
+                useAbility={props.useAbility}
+                abilityTitle={props.name}
+              ></ClassAbilityUseButton>
+            ) : (
+              <button onClick={() => props.useAbility(props.minCost)}>
+                Usar
+              </button>
+            )}
+          </>
+        ) : (
+          <></>
+        )}
       </div>
       <div id="abilityDescription">{props.description}</div>
       <div id="abilityTags">

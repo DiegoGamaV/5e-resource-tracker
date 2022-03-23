@@ -14,6 +14,8 @@ function ClassLevel(props) {
               hasCostRange={ability.hasCostRange}
               description={ability.description}
               tags={ability.tags}
+              useAbility={props.useAbility}
+              resourceName={props.resourceName}
             ></ClassAbility>
           </li>
         ))}

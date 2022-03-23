@@ -10,7 +10,6 @@ module.exports = class CharacterController {
   }
 
   getCharacterById(id) {
-    console.log(id);
     return this.characters.find((character) => character.id === id);
   }
 
@@ -58,15 +57,13 @@ module.exports = class CharacterController {
       throw new Error("This id " + id + " does not resolve to a character");
 
     const subclass = this.getSubclassById(specializationId);
-    if (subclass === undefined)
-      throw new Error("The id " + id + " does not resolve to a subclass");
-
     const gameClass = this.getClassById(gameClassId);
 
     character.name = name;
     character.level = level;
     character.gameClass = gameClass;
-    character.subclass = subclass;
+    character.specialization = subclass;
+    character.resourceAmount = character.getResourceAmountByLevel();
   }
 
   getClassById(id) {
