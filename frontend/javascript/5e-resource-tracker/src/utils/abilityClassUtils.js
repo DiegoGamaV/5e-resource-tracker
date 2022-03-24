@@ -19,6 +19,7 @@ function formatAbilitiesByLevel(classAbilities, subclass) {
     );
 
     Object.keys(subclassAbilitiesByLevel).forEach((level) => {
+      console.log(level, classAbilitiesByLevel[level]);
       const subclassProgressionIndex = getSubclassAbilityIndex(
         classAbilitiesByLevel[level]
       );
@@ -39,10 +40,12 @@ function formatAbilitiesByLevel(classAbilities, subclass) {
 function getSubclassAbilityIndex(abilities) {
   let subclassAbilityIndex = -1;
 
-  const subclassAbility = abilities.find(
-    (ability) => ability.name === "Habilidade de Subclasse"
-  );
-  subclassAbilityIndex = abilities.indexOf(subclassAbility);
+  if (abilities) {
+    const subclassAbility = abilities.find(
+      (ability) => ability.name === "Habilidade de Subclasse"
+    );
+    subclassAbilityIndex = abilities.indexOf(subclassAbility);
+  }
 
   return subclassAbilityIndex;
 }
@@ -55,4 +58,18 @@ function getLevelOfFirstSubclassAbility(abilities) {
   return subclassAbility ? subclassAbility.unlockedLevel : 0;
 }
 
-export { formatAbilitiesByLevel, getLevelOfFirstSubclassAbility };
+function getClassAbilityTags(abilities) {
+  const tags = new Set();
+
+  abilities.forEach((ability) => {
+    ability.tags.forEach((tag) => tags.add(tag));
+  });
+
+  return Array.from(tags);
+}
+
+export {
+  formatAbilitiesByLevel,
+  getLevelOfFirstSubclassAbility,
+  getClassAbilityTags,
+};

@@ -1,7 +1,7 @@
-import ClassPage from "./pages/ClassPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
-  return <ClassPage></ClassPage>;
+  return <HomePage></HomePage>;
 }
 
 export default App;

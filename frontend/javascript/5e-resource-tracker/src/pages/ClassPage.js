@@ -2,10 +2,9 @@ import React from "react";
 
 import ClassHeader from "../components/class/ClassHeader";
 import ClassToolbar from "../components/class/ClassToolbar";
-import ClassLevel from "../components/class/ClassLevel";
+import ClassDescription from "../components/class/ClassDescription";
 
 import { defaultClass } from "../data/default";
-import { formatAbilitiesByLevel } from "../utils/abilityClassUtils";
 
 function ClassPage() {
   const [classInfo, setClassInfo] = React.useState(defaultClass);
@@ -50,11 +49,6 @@ function ClassPage() {
       .catch((error) => console.log(error));
   }, [classInfo.id]);
 
-  const abilitiesByLevel = formatAbilitiesByLevel(
-    classInfo.abilities,
-    currentSubclass
-  );
-
   return (
     <>
       <ClassHeader></ClassHeader>
@@ -68,17 +62,11 @@ function ClassPage() {
         currentLevel={currentLevel}
         onChangeLevel={setCurrentLevel}
       ></ClassToolbar>
-      <ul>
-        {Object.keys(abilitiesByLevel)
-          .filter((abilityLevel) => abilityLevel <= currentLevel)
-          .map((abilityLevel) => (
-            <ClassLevel
-              key={abilityLevel}
-              level={abilityLevel}
-              abilities={abilitiesByLevel[abilityLevel]}
-            ></ClassLevel>
-          ))}
-      </ul>
+      <ClassDescription
+        currentLevel={currentLevel}
+        classAbilities={classInfo.abilities}
+        currentSubclass={currentSubclass}
+      ></ClassDescription>
     </>
   );
 }

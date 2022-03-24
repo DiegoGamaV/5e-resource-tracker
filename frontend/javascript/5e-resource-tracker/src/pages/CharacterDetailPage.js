@@ -4,13 +4,10 @@ import { useParams } from "react-router-dom";
 
 //import ClassHeader from "../components/class/ClassHeader";
 import CharacterToolbar from "../components/character/detail/CharacterToolbar";
-import ClassLevel from "../components/class/ClassLevel";
+import ClassDescription from "../components/class/ClassDescription";
 
 import { defaultCharacter } from "../data/default";
-import {
-  formatAbilitiesByLevel,
-  getLevelOfFirstSubclassAbility,
-} from "../utils/abilityClassUtils";
+import { getLevelOfFirstSubclassAbility } from "../utils/abilityClassUtils";
 
 function CharacterDetailPage(props) {
   const { id } = useParams();
@@ -148,11 +145,6 @@ function CharacterDetailPage(props) {
     event.preventDefault();
   }
 
-  const abilitiesByLevel = formatAbilitiesByLevel(
-    character.class.abilities,
-    character.specialization
-  );
-
   return (
     <>
       <CharacterToolbar
@@ -171,20 +163,13 @@ function CharacterDetailPage(props) {
         resourceAmountByLevel={character.class.resourceAmountByLevelList}
         onSaveChanges={updateCharacter}
       ></CharacterToolbar>
-      <hr></hr>
-      <ul>
-        {Object.keys(abilitiesByLevel)
-          .filter((abilityLevel) => abilityLevel <= character.level)
-          .map((abilityLevel) => (
-            <ClassLevel
-              key={abilityLevel}
-              level={abilityLevel}
-              abilities={abilitiesByLevel[abilityLevel]}
-              useAbility={changeResourceAmount}
-              resourceName={character.class.resourceName}
-            ></ClassLevel>
-          ))}
-      </ul>
+      <ClassDescription
+        currentLevel={character.level}
+        classAbilities={character.class.abilities}
+        currentSubclass={character.specialization}
+        useAbility={changeResourceAmount}
+        resourceName={character.class.resourceName}
+      ></ClassDescription>
     </>
   );
 }

@@ -1,6 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function CharacterInfoToolbar(props) {
+  const redirectLink = "/character/" + props.character.id;
+
   return (
     <div>
       <span>{props.character.name} - </span>
@@ -13,7 +16,9 @@ function CharacterInfoToolbar(props) {
         )}
       </span>
       <span> - {props.character.level} </span>
-      <button onClick="">Abrir</button>
+      <Link to={redirectLink}>
+        <button type="button">Abrir</button>
+      </Link>
     </div>
   );
 }
