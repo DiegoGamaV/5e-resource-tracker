@@ -2,9 +2,9 @@ import React from "react";
 
 import { useParams } from "react-router-dom";
 
-//import ClassHeader from "../components/class/ClassHeader";
 import CharacterToolbar from "../components/character/detail/CharacterToolbar";
 import ClassDescription from "../components/class/ClassDescription";
+import NavigationBar from "../components/navigation/NavigationBar";
 
 import { defaultCharacter } from "../data/default";
 import { getLevelOfFirstSubclassAbility } from "../utils/abilityClassUtils";
@@ -147,6 +147,7 @@ function CharacterDetailPage(props) {
 
   return (
     <>
+      <NavigationBar />
       <CharacterToolbar
         name={character.name}
         onChangeName={changeName}

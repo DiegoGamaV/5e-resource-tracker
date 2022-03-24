@@ -63,14 +63,15 @@ function ClassDescription(props) {
 
   return (
     <>
+      <br />
       <ClassAbilitySearchFilter
         filterByTitle={filterAbilitiesBySearch}
       ></ClassAbilitySearchFilter>
-      <br></br>
       <ClassAbilityTagFilter
         classAbilities={props.classAbilities}
         filterByTags={getFilteredAbilitiesByTags}
       ></ClassAbilityTagFilter>
+      <br />
       <ul>
         {Object.keys(abilitiesByLevel)
           .filter((abilityLevel) => abilityLevel <= props.currentLevel)

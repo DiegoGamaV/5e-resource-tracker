@@ -5,6 +5,7 @@ import ClassToolbar from "../components/class/ClassToolbar";
 import ClassDescription from "../components/class/ClassDescription";
 
 import { defaultClass } from "../data/default";
+import NavigationBar from "../components/navigation/NavigationBar";
 
 function ClassPage() {
   const [classInfo, setClassInfo] = React.useState(defaultClass);
@@ -51,8 +52,7 @@ function ClassPage() {
 
   return (
     <>
-      <ClassHeader></ClassHeader>
-      <hr></hr>
+      <NavigationBar />
       <ClassToolbar
         specializationName={specializationName}
         subclasses={subclasses}

@@ -3,15 +3,21 @@ import React from "react";
 function ClassAbilitySearchFilter(props) {
   const [query, setQuery] = React.useState("");
 
+  function onChangeText(newQuery) {
+    setQuery(newQuery);
+    props.filterByTitle(query);
+  }
+
   return (
-    <span>
+    <div>
+      <label htmlFor="textSearch">Pesquisar Por Nome</label>
       <input
         type="text"
+        id="textSearch"
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => onChangeText(e.target.value)}
       ></input>
-      <button onClick={(e) => props.filterByTitle(query)}>Buscar</button>
-    </span>
+    </div>
   );
 }
 

@@ -2,6 +2,7 @@ import React from "react";
 
 import CharacterCreationToolbar from "../components/character/CharacterCreationToolbar";
 import CharacterList from "../components/character/CharacterList";
+import NavigationBar from "../components/navigation/NavigationBar";
 
 function CharactersPage() {
   const [characterList, setCharacterList] = React.useState([]);
@@ -47,6 +48,7 @@ function CharactersPage() {
 
   return (
     <>
+      <NavigationBar />
       {isCreating ? (
         <>
           <div>

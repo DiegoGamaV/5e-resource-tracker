@@ -18,7 +18,7 @@ function ClassAbilityTagFilter(props) {
   }
 
   return (
-    <>
+    <div>
       <span>
         {tags.map((tag) => (
           <button
@@ -31,7 +31,7 @@ function ClassAbilityTagFilter(props) {
         ))}
       </span>
       <div>
-        Operação de Filtro:
+        Operação de Filtro
         <select
           onChange={(e) => setOperation(e.target.value)}
           value={operation}
@@ -55,7 +55,7 @@ function ClassAbilityTagFilter(props) {
           .slice(0, -3)
           .trim()}
       </div>
-    </>
+    </div>
   );
 }
 

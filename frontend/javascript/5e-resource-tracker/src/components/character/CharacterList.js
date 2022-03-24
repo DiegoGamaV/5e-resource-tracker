@@ -13,7 +13,7 @@ function CharacterList(props) {
   return (
     <div>
       <div>
-        <label htmlFor="name">Pesquisar Por Nome</label>
+        <label htmlFor="nameSearch">Pesquisar Por Nome</label>
         <input
           type="text"
           id="nameSearch"
