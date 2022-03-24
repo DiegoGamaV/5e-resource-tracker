@@ -3,8 +3,8 @@ import React from "react";
 import ClassLevel from "./ClassLevel";
 
 import { formatAbilitiesByLevel } from "../../utils/abilityClassUtils";
-import ClassAbilityTagFilter from "./filter/ClassAbilityTagFilter";
-import ClassAbilitySearchFilter from "./filter/ClassAbilitySearchFilter";
+import ClassAbilityTagFilter from "../filter/ClassAbilityTagFilter";
+import ClassAbilitySearchFilter from "../filter/ClassAbilitySearchFilter";
 
 function ClassDescription(props) {
   const [filteredAbilitiesByTags, setFilteredAbilitiesByTags] = React.useState(

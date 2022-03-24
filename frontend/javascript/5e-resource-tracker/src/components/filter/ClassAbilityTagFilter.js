@@ -1,5 +1,5 @@
 import React from "react";
-import { getClassAbilityTags } from "../../../utils/abilityClassUtils";
+import { getClassAbilityTags } from "../../utils/abilityClassUtils";
 
 function ClassAbilityTagFilter(props) {
   const [operation, setOperation] = React.useState("ou");

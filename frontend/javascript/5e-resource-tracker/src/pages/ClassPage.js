@@ -1,28 +1,13 @@
 import React from "react";
 
-import ClassHeader from "../components/class/ClassHeader";
-import ClassToolbar from "../components/class/ClassToolbar";
-import ClassDescription from "../components/class/ClassDescription";
-
-import { defaultClass } from "../data/default";
+import ClassList from "../components/class/ClassList";
 import NavigationBar from "../components/navigation/NavigationBar";
 
 function ClassPage() {
-  const [classInfo, setClassInfo] = React.useState(defaultClass);
-  const [specializationName, setSpecializationName] = React.useState("");
-  const [subclasses, setSubclasses] = React.useState([]);
-  const [currentLevel, setCurrentLevel] = React.useState(20);
-  const [currentSubclass, setCurrentSubclass] = React.useState(undefined);
-
-  function changeSubclass(subclassIndex) {
-    const subclass = subclasses[subclassIndex];
-
-    if (currentSubclass === subclass) setCurrentSubclass(undefined);
-    else setCurrentSubclass(subclass);
-  }
+  const [classList, setClassList] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("http://localhost:3001/classes/?id=0", {
+    fetch("http://localhost:3001/classes/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -30,43 +15,15 @@ function ClassPage() {
     })
       .then((res) => res.json())
       .then((response) => {
-        setClassInfo(response[0]);
-        setSpecializationName(response[0].specializationName);
+        setClassList(response);
       })
       .catch((error) => console.log(error));
-  }, [classInfo.id]);
-
-  React.useEffect(() => {
-    fetch("http://localhost:3001/classes/" + classInfo.id + "/subclasses", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((response) => {
-        setSubclasses(response);
-      })
-      .catch((error) => console.log(error));
-  }, [classInfo.id]);
+  }, [setClassList.length]);
 
   return (
     <>
       <NavigationBar />
-      <ClassToolbar
-        specializationName={specializationName}
-        subclasses={subclasses}
-        onChangeSubclass={changeSubclass}
-        resourceAmountByLevel={classInfo.resourceAmountByLevelList}
-        resourceName={classInfo.resourceName}
-        currentLevel={currentLevel}
-        onChangeLevel={setCurrentLevel}
-      ></ClassToolbar>
-      <ClassDescription
-        currentLevel={currentLevel}
-        classAbilities={classInfo.abilities}
-        currentSubclass={currentSubclass}
-      ></ClassDescription>
+      <ClassList classes={classList}></ClassList>
     </>
   );
 }

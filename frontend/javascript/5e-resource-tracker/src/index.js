@@ -8,6 +8,7 @@ import CharactersPage from "./pages/CharactersPage";
 import CharacterDetailPage from "./pages/CharacterDetailPage";
 import HomePage from "./pages/HomePage";
 import ClassPage from "./pages/ClassPage";
+import ClassDetailPage from "./pages/ClassDetailPage";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/class" element={<ClassPage />}></Route>
+        <Route path="/class/:id" element={<ClassDetailPage />}></Route>
         <Route path="/character" element={<CharactersPage />}></Route>
         <Route path="/character/:id" element={<CharacterDetailPage />}></Route>
       </Routes>

@@ -1,4 +1,4 @@
-import ClassAbility from "./ClassAbility";
+import ClassAbility from "../classAbility/ClassAbility";
 
 function ClassLevel(props) {
   return (
