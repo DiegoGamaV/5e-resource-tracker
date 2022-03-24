@@ -79,6 +79,8 @@ function ClassDescription(props) {
               key={abilityLevel}
               level={abilityLevel}
               abilities={abilitiesByLevel[abilityLevel]}
+              useAbility={props.useAbility}
+              resourceName={props.resourceName}
             ></ClassLevel>
           ))}
       </ul>
