@@ -105,29 +105,29 @@ function CharacterCreationToolbar(props) {
       <div>
         <form
           onSubmit={createCharacter}
-          class="row gx-3 gy-2 align-items-center"
+          className="row gx-3 gy-2 align-items-center"
         >
-          <div class="col-auto">
-            <div class="input-group">
-              <div class="input-group-text">Nome</div>
+          <div className="col-auto">
+            <div className="input-group">
+              <div className="input-group-text">Nome</div>
               <input
                 type="text"
                 id="name"
                 name="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                class="form-control"
+                className="form-control"
               ></input>
             </div>
           </div>
-          <div class="col-auto">
-            <div class="input-group">
-              <label class="input-group-text">Classe</label>
+          <div className="col-auto">
+            <div className="input-group">
+              <label className="input-group-text">Classe</label>
               <select
                 name="classes"
                 id="classes"
                 onChange={(e) => handleOnSelectClass(parseInt(e.target.value))}
-                class="form-select"
+                className="form-select"
               >
                 {classList.map((classInfo) => {
                   return (
@@ -139,14 +139,14 @@ function CharacterCreationToolbar(props) {
               </select>
             </div>
           </div>
-          <div class="col-auto">
-            <div class="input-group">
-              <label class="input-group-text">Nível</label>
+          <div className="col-auto">
+            <div className="input-group">
+              <label className="input-group-text">Nível</label>
               <select
                 name="level"
                 id="level"
                 onChange={(e) => handleOnSelectLevel(parseInt(e.target.value))}
-                class="form-select"
+                className="form-select"
               >
                 {levelOptions.map((level) => (
                   <option key={level} value={level}>
@@ -157,9 +157,9 @@ function CharacterCreationToolbar(props) {
             </div>
           </div>
           {IsItTimeToSpecialize() ? (
-            <div class="col-auto">
-              <div class="input-group">
-                <label class="input-group-text">
+            <div className="col-auto">
+              <div className="input-group">
+                <label className="input-group-text">
                   {currentClass.specializationName
                     ? currentClass.specializationName
                     : "Subclasse"}
@@ -170,7 +170,7 @@ function CharacterCreationToolbar(props) {
                   onChange={(e) =>
                     handleOnSelectSubclass(parseInt(e.target.value))
                   }
-                  class="form-select"
+                  className="form-select"
                 >
                   {subclassList.map((subclass) => {
                     return (
@@ -185,12 +185,12 @@ function CharacterCreationToolbar(props) {
           ) : (
             <></>
           )}
-          <div class="col-auto">
+          <div className="col-auto">
             <input
               id="createCharacter"
               type="submit"
               value="Criar"
-              class="btn btn-primary"
+              className="btn btn-primary"
             ></input>
           </div>
         </form>

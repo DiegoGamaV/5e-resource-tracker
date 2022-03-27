@@ -17,18 +17,18 @@ function CharacterList(props) {
           type="search"
           id="nameSearch"
           name="nameSearch"
-          class="form-control"
+          className="form-control"
           placeholder="Buscar por nome"
           value={nameFilter}
           onChange={(e) => setNameFilter(e.target.value)}
         ></input>{" "}
       </div>
-      <ul class="list-group">
+      <ul className="list-group">
         {filteredCharacters.map((character) => (
           <li
             id={character.id}
             key={character.id}
-            class="list-group-item d-flex justify-content-between align-items-start"
+            className="list-group-item d-flex justify-content-between align-items-start"
           >
             <CharacterInfoToolbar character={character}></CharacterInfoToolbar>
           </li>

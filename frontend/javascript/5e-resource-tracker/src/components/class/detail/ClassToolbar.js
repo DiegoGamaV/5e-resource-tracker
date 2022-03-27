@@ -6,17 +6,17 @@ function ClassToolbar(props) {
   ];
 
   return (
-    <div className="ClassToolbar" class="row gy-1 gx-3 align-items-center">
-      <div data-testid="specializationName" class="col-auto">
-        <div class="input-group">
-          <span class="input-group-text">{props.specializationName}</span>
-          <span class="btn-group" role="group">
+    <div className="row gy-1 gx-3 align-items-center">
+      <div data-testid="specializationName" className="col-auto">
+        <div className="input-group">
+          <span className="input-group-text">{props.specializationName}</span>
+          <span className="btn-group" role="group">
             {props.subclasses.map((subclass) => (
               <button
                 data-testid="subclassButton"
                 key={subclass.id}
                 value={subclass.id}
-                class="btn btn-outline-primary"
+                className="btn btn-outline-primary"
                 onClick={(e) =>
                   props.onChangeSubclass(parseInt(e.target.value) - 1)
                 }
@@ -27,14 +27,14 @@ function ClassToolbar(props) {
           </span>
         </div>
       </div>
-      <div class="col-auto">
-        <div class="input-group">
-          <span class="input-group-text">Nível</span>
+      <div className="col-auto">
+        <div className="input-group">
+          <span className="input-group-text">Nível</span>
           <select
             onChange={(e) => props.onChangeLevel(parseInt(e.target.value))}
             value={props.currentLevel}
             data-testid="levelSelect"
-            class="form-select"
+            className="form-select"
           >
             {levelOptions.map((level) => (
               <option data-testid="levelOption" key={level} value={level}>
@@ -42,8 +42,7 @@ function ClassToolbar(props) {
               </option>
             ))}
           </select>
-          <span class="input-group-text">
-            {" "}
+          <span className="input-group-text">
             {props.resourceName}:{" "}
             {props.resourceAmountByLevel[props.currentLevel - 1]}
           </span>

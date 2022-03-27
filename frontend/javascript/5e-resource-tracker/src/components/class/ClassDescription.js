@@ -28,7 +28,6 @@ function ClassDescription(props) {
         );
       }
     }
-    console.log(filteredAbilities);
     setFilteredAbilitiesByTags(filteredAbilities);
   }
 
@@ -58,7 +57,7 @@ function ClassDescription(props) {
 
   const abilitiesByLevel = formatAbilitiesByLevel(
     getIntersectionOfFilteredAbilities(),
-    props.subclass
+    props.currentSubclass
   );
 
   return (
@@ -72,7 +71,7 @@ function ClassDescription(props) {
         filterByTags={getFilteredAbilitiesByTags}
       ></ClassAbilityTagFilter>
       <br />
-      <ul class="list-group">
+      <ul className="list-group">
         {Object.keys(abilitiesByLevel)
           .filter((abilityLevel) => abilityLevel <= props.currentLevel)
           .map((abilityLevel) => (

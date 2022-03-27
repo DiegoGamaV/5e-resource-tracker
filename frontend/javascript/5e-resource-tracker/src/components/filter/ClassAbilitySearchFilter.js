@@ -15,7 +15,7 @@ function ClassAbilitySearchFilter(props) {
         id="textSearch"
         value={query}
         onChange={(e) => onChangeText(e.target.value)}
-        class="form-control me-2"
+        className="form-control me-2"
         placeholder="Buscar por texto"
       ></input>
     </div>

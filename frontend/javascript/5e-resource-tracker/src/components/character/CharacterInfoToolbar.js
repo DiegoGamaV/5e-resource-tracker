@@ -5,10 +5,10 @@ function CharacterInfoToolbar(props) {
   const redirectLink = "/character/" + props.character.id;
 
   return (
-    <div class="card w-75">
-      <div class="card-body">
-        <h5 class="card-title">{props.character.name}</h5>
-        <p class="card-text">
+    <div className="card w-75">
+      <div className="card-body">
+        <h5 className="card-title">{props.character.name}</h5>
+        <p className="card-text">
           <b>{props.character.class.name}</b> de{" "}
           <b>nível {props.character.level} </b>
           {props.character.specialization ? (
@@ -21,7 +21,7 @@ function CharacterInfoToolbar(props) {
           )}
         </p>
         <Link to={redirectLink}>
-          <button class="btn btn-primary" type="button">
+          <button className="btn btn-primary" type="button">
             Abrir
           </button>
         </Link>

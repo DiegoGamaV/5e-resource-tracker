@@ -19,7 +19,6 @@ function formatAbilitiesByLevel(classAbilities, subclass) {
     );
 
     Object.keys(subclassAbilitiesByLevel).forEach((level) => {
-      console.log(level, classAbilitiesByLevel[level]);
       const subclassProgressionIndex = getSubclassAbilityIndex(
         classAbilitiesByLevel[level]
       );

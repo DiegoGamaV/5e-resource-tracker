@@ -56,7 +56,7 @@ function CharactersPage() {
               addCharacterHook={addCharacter}
             ></CharacterCreationToolbar>
             <button
-              class="btn btn-secondary"
+              className="btn btn-secondary"
               onClick={() => setIsCreating(false)}
             >
               Fechar
@@ -65,7 +65,7 @@ function CharactersPage() {
           <br></br>
         </>
       ) : (
-        <button class="btn btn-primary" onClick={() => setIsCreating(true)}>
+        <button className="btn btn-primary" onClick={() => setIsCreating(true)}>
           Criar Personagem
         </button>
       )}

@@ -2,18 +2,18 @@ import ClassAbilityUseButton from "./ClassAbilityUseButton";
 
 function ClassAbility(props) {
   return (
-    <div className="ClassAbility" class="card w-75">
-      <h6 class="card-header">
+    <div className="card w-75">
+      <h6 className="card-header">
         <span id="abilityTitle">{props.name}</span>
       </h6>
-      <div class="card-body">
-        <h6 id="resourceCost" class="card-title">
+      <div className="card-body">
+        <h6 id="resourceCost" className="card-title">
           Custo:{" "}
           {props.hasCostRange
             ? props.minCost + " - " + props.maxCost
             : props.minCost}
         </h6>
-        <p id="abilityDescription" class="card-text">
+        <p id="abilityDescription" className="card-text">
           {props.description}
         </p>
         <>
@@ -29,7 +29,7 @@ function ClassAbility(props) {
                 ></ClassAbilityUseButton>
               ) : (
                 <button
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   onClick={() => props.useAbility(props.minCost)}
                 >
                   Usar
@@ -41,9 +41,13 @@ function ClassAbility(props) {
           )}
         </>
       </div>
-      <div id="abilityTags" class="card-footer text-muted">
+      <div id="abilityTags" className="card-footer text-muted">
         {props.tags.map((tag) => (
-          <span id="abilityTag" key={tag} class="badge rounded-pill bg-primary">
+          <span
+            id="abilityTag"
+            key={tag}
+            className="badge rounded-pill bg-primary"
+          >
             <b>{tag}</b>
           </span>
         ))}

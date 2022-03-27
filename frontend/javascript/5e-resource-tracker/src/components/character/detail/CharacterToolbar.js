@@ -6,33 +6,33 @@ function CharacterToolbar(props) {
   ];
 
   return (
-    <div className="CharacterToolbar">
+    <div>
       <form
-        class="row gx-3 gy-2 align-items-center"
+        className="row gx-3 gy-2 align-items-center"
         onSubmit={props.onSaveChanges}
       >
-        <div class="col-auto">
-          <div class="input-group">
-            <div class="input-group-text">Nome</div>
+        <div className="col-auto">
+          <div className="input-group">
+            <div className="input-group-text">Nome</div>
             <input
               type="text"
               id="name"
               name="name"
               value={props.name}
               onChange={(e) => props.onChangeName(e.target.value)}
-              class="form-control"
+              className="form-control"
             ></input>
           </div>
         </div>
-        <div class="col-auto">
-          <div class="input-group">
-            <label class="input-group-text">Classe</label>
+        <div className="col-auto">
+          <div className="input-group">
+            <label className="input-group-text">Classe</label>
             <select
               name="classes"
               id="classes"
               value={props.class.id}
               onChange={(e) => props.onChangeClass(parseInt(e.target.value))}
-              class="form-select"
+              className="form-select"
             >
               {props.classes.map((classInfo) => {
                 return (
@@ -44,14 +44,14 @@ function CharacterToolbar(props) {
             </select>
           </div>
         </div>
-        <div class="col-auto">
-          <div class="input-group">
-            <label class="input-group-text">Nível</label>
+        <div className="col-auto">
+          <div className="input-group">
+            <label className="input-group-text">Nível</label>
             <select
               onChange={(e) => props.onChangeLevel(parseInt(e.target.value))}
               value={props.level}
               data-testid="levelSelect"
-              class="form-select"
+              className="form-select"
             >
               {levelOptions.map((level) => (
                 <option data-testid="levelOption" key={level} value={level}>
@@ -62,16 +62,16 @@ function CharacterToolbar(props) {
           </div>
         </div>
         {props.subclass ? (
-          <div class="col-auto" data-testid="specialization">
-            <div class="input-group">
-              <label class="input-group-text">Subclasse</label>
+          <div className="col-auto" data-testid="specialization">
+            <div className="input-group">
+              <label className="input-group-text">Subclasse</label>
               <select
                 onChange={(e) =>
                   props.onChangeSubclass(parseInt(e.target.value) - 1)
                 }
                 value={props.subclass.id}
                 data-testid="levelSelect"
-                class="form-select"
+                className="form-select"
               >
                 {props.subclasses.map((subclass) => (
                   <option key={subclass.id} value={subclass.id}>
@@ -84,18 +84,18 @@ function CharacterToolbar(props) {
         ) : (
           <></>
         )}
-        <div class="col-auto">
+        <div className="col-auto">
           <input
             id="updateCharacter"
             type="submit"
-            class="btn btn-primary"
+            className="btn btn-primary"
             value="Salvar"
           ></input>
         </div>
 
         <div>
           <h4>
-            <span data-testid="classResource" class="badge bg-secondary">
+            <span data-testid="classResource" className="badge bg-secondary">
               {props.resourceName}: {props.resourceAmount} /
               {props.resourceAmountByLevel[props.level - 1]}
             </span>

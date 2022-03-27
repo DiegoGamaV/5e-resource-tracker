@@ -16,18 +16,18 @@ function ClassList(props) {
           type="search"
           id="nameSearch"
           name="nameSearch"
-          class="form-control"
+          className="form-control"
           placeholder="Buscar por nome"
           value={nameFilter}
           onChange={(e) => setNameFilter(e.target.value)}
         ></input>{" "}
       </div>
-      <ul class="list-group">
+      <ul className="list-group">
         {filteredClasses.map((classInfo) => (
           <li
             id={classInfo.id}
             key={classInfo.id}
-            class="list-group-item d-flex justify-content-between align-items-start"
+            className="list-group-item d-flex justify-content-between align-items-start"
           >
             <ClassInfoToolbar class={classInfo}></ClassInfoToolbar>
           </li>

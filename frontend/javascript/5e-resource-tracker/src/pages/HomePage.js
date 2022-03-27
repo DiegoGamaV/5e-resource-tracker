@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
-    <div class="container px-4 py-5" id="home">
-      <h2 class="pb-2 border-bottom">5e Resource Tracker</h2>
-      <div class="row g-3 py-5 row-cols-2 rows-cols-lg-3">
-        <div class="feature col">
+    <div className="container px-4 py-5" id="home">
+      <h2 className="pb-2 border-bottom">5e Resource Tracker</h2>
+      <div className="row g-3 py-5 row-cols-2 rows-cols-lg-3">
+        <div className="feature col">
           <IconContext.Provider
             value={{
               color: "blue",
@@ -28,12 +28,12 @@ function HomePage() {
             filtrando elas por nome e tags.
           </p>
           <Link to="/character">
-            <button type="button" class="btn btn-primary">
+            <button type="button" className="btn btn-primary">
               Acessar
             </button>
           </Link>
         </div>
-        <div class="feature col">
+        <div className="feature col">
           <IconContext.Provider
             value={{
               color: "blue",
@@ -51,7 +51,7 @@ function HomePage() {
             personagem, filtrando elas por nomes e tags.
           </p>
           <Link to="/class">
-            <button type="button" class="btn btn-primary">
+            <button type="button" className="btn btn-primary">
               Acessar
             </button>
           </Link>

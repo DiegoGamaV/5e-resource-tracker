@@ -2,32 +2,41 @@ import { Link } from "react-router-dom";
 
 function NavigationBar() {
   return (
-    <nav
-      class="navbar navbar-expand-lg navbar-light bg-light"
-      className="Header"
-    >
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">
           5e Resource Tracker
-        </a>
-        <div class="btn-group" role="group">
-          <Link to="/">
-            <button class="btn btn-outline-primary" type="button">
-              Home
-            </button>
-          </Link>
-          <Link to="/character">
-            <button class="btn btn-outline-primary" type="button">
-              Personagens
-            </button>
-          </Link>
-          <Link to="/class">
-            <button class="btn btn-outline-primary" type="button">
-              Classes
-            </button>
-          </Link>
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link" to="/">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/character">
+                Personagens
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/class">
+                Classes
+              </Link>
+            </li>
+          </ul>
         </div>
-        <hr />
       </div>
     </nav>
   );
