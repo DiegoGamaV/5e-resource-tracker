@@ -11,7 +11,12 @@ function ClassAbilityUseButton(props) {
 
   return (
     <Popup
-      trigger={<button className="button"> Usar </button>}
+      trigger={
+        <button className="button" class="btn btn-primary">
+          {" "}
+          Usar{" "}
+        </button>
+      }
       modal
       nested
       contentStyle={contentStyle}

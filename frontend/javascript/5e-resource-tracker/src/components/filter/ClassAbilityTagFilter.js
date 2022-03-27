@@ -19,20 +19,32 @@ function ClassAbilityTagFilter(props) {
 
   return (
     <div>
-      <span>
+      <div class="btn-group" role="group">
         {tags.map((tag) => (
           <button
             key={tag}
             value={tag}
             onClick={(e) => onSelectTag(e.target.value)}
+            type="button"
+            class={
+              selectedTags.includes(tag)
+                ? "btn btn-primary"
+                : "btn btn-outline-primary"
+            }
+            data-bs-toggle="button"
+            autocomplete="off"
           >
             {tag}
           </button>
         ))}
-      </span>
-      <div>
-        Operação de Filtro
+      </div>
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupSelect02">
+          Operação de Filtro
+        </label>
+
         <select
+          class="form-select"
           onChange={(e) => setOperation(e.target.value)}
           value={operation}
         >
@@ -43,17 +55,20 @@ function ClassAbilityTagFilter(props) {
             Alguma das Tags
           </option>
         </select>
-        <button onClick={(e) => props.filterByTags(selectedTags, operation)}>
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          onClick={(e) => props.filterByTags(selectedTags, operation)}
+        >
           Filtrar
         </button>
-        <button onClick={(e) => setSelectedTags([])}>Limpar Filtro</button>
-        {selectedTags
-          .reduce(
-            (query, selectedTag) => query + selectedTag + " " + operation + " ",
-            ""
-          )
-          .slice(0, -3)
-          .trim()}
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          onClick={(e) => setSelectedTags([])}
+        >
+          Limpar Filtro
+        </button>
       </div>
     </div>
   );

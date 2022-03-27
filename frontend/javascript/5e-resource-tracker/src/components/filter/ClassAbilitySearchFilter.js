@@ -10,12 +10,13 @@ function ClassAbilitySearchFilter(props) {
 
   return (
     <div>
-      <label htmlFor="textSearch">Pesquisar Por Nome</label>
       <input
-        type="text"
+        type="search"
         id="textSearch"
         value={query}
         onChange={(e) => onChangeText(e.target.value)}
+        class="form-control me-2"
+        placeholder="Buscar por texto"
       ></input>
     </div>
   );

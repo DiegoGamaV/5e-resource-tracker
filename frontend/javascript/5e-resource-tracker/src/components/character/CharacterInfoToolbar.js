@@ -5,20 +5,27 @@ function CharacterInfoToolbar(props) {
   const redirectLink = "/character/" + props.character.id;
 
   return (
-    <div>
-      <span>{props.character.name} - </span>
-      <span>
-        <span>{props.character.class.name}</span>
-        {props.character.specialization ? (
-          <span> ({props.character.specialization.name})</span>
-        ) : (
-          <></>
-        )}
-      </span>
-      <span> - {props.character.level} </span>
-      <Link to={redirectLink}>
-        <button type="button">Abrir</button>
-      </Link>
+    <div class="card w-75">
+      <div class="card-body">
+        <h5 class="card-title">{props.character.name}</h5>
+        <p class="card-text">
+          <b>{props.character.class.name}</b> de{" "}
+          <b>nível {props.character.level} </b>
+          {props.character.specialization ? (
+            <span>
+              {" "}
+              especializado(a) em <b>{props.character.specialization.name}</b>
+            </span>
+          ) : (
+            <></>
+          )}
+        </p>
+        <Link to={redirectLink}>
+          <button class="btn btn-primary" type="button">
+            Abrir
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

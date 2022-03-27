@@ -55,13 +55,21 @@ function CharactersPage() {
             <CharacterCreationToolbar
               addCharacterHook={addCharacter}
             ></CharacterCreationToolbar>
-            <button onClick={() => setIsCreating(false)}>Fechar</button>
+            <button
+              class="btn btn-secondary"
+              onClick={() => setIsCreating(false)}
+            >
+              Fechar
+            </button>
           </div>
           <br></br>
         </>
       ) : (
-        <button onClick={() => setIsCreating(true)}>Criar Personagem</button>
+        <button class="btn btn-primary" onClick={() => setIsCreating(true)}>
+          Criar Personagem
+        </button>
       )}
+      <hr />
       <CharacterList characters={characterList}></CharacterList>
     </>
   );

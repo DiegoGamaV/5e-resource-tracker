@@ -72,7 +72,7 @@ function ClassDescription(props) {
         filterByTags={getFilteredAbilitiesByTags}
       ></ClassAbilityTagFilter>
       <br />
-      <ul>
+      <ul class="list-group">
         {Object.keys(abilitiesByLevel)
           .filter((abilityLevel) => abilityLevel <= props.currentLevel)
           .map((abilityLevel) => (

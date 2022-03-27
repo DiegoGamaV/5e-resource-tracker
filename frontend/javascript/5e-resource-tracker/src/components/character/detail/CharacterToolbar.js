@@ -7,77 +7,99 @@ function CharacterToolbar(props) {
 
   return (
     <div className="CharacterToolbar">
-      <form onSubmit={props.onSaveChanges}>
-        <span>
-          <label htmlFor="name">Nome</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={props.name}
-            onChange={(e) => props.onChangeName(e.target.value)}
-          ></input>
-        </span>
-        <span>
-          <label htmlFor="classes">Classe</label>
-          <select
-            name="classes"
-            id="classes"
-            value={props.class.id}
-            onChange={(e) => props.onChangeClass(parseInt(e.target.value))}
-          >
-            {props.classes.map((classInfo) => {
-              return (
-                <option key={classInfo.id} value={classInfo.id}>
-                  {classInfo.name}
-                </option>
-              );
-            })}
-          </select>
-        </span>
-        <span>
-          Nível
-          <select
-            onChange={(e) => props.onChangeLevel(parseInt(e.target.value))}
-            value={props.level}
-            data-testid="levelSelect"
-          >
-            {levelOptions.map((level) => (
-              <option data-testid="levelOption" key={level} value={level}>
-                {level}
-              </option>
-            ))}
-          </select>
-        </span>
-        {props.subclass ? (
-          <span data-testid="specialization">
-            Subclasse
+      <form
+        class="row gx-3 gy-2 align-items-center"
+        onSubmit={props.onSaveChanges}
+      >
+        <div class="col-auto">
+          <div class="input-group">
+            <div class="input-group-text">Nome</div>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={props.name}
+              onChange={(e) => props.onChangeName(e.target.value)}
+              class="form-control"
+            ></input>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="input-group">
+            <label class="input-group-text">Classe</label>
             <select
-              onChange={(e) =>
-                props.onChangeSubclass(parseInt(e.target.value) - 1)
-              }
-              value={props.subclass.id}
-              data-testid="levelSelect"
+              name="classes"
+              id="classes"
+              value={props.class.id}
+              onChange={(e) => props.onChangeClass(parseInt(e.target.value))}
+              class="form-select"
             >
-              {props.subclasses.map((subclass) => (
-                <option key={subclass.id} value={subclass.id}>
-                  {subclass.name}
+              {props.classes.map((classInfo) => {
+                return (
+                  <option key={classInfo.id} value={classInfo.id}>
+                    {classInfo.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="input-group">
+            <label class="input-group-text">Nível</label>
+            <select
+              onChange={(e) => props.onChangeLevel(parseInt(e.target.value))}
+              value={props.level}
+              data-testid="levelSelect"
+              class="form-select"
+            >
+              {levelOptions.map((level) => (
+                <option data-testid="levelOption" key={level} value={level}>
+                  {level}
                 </option>
               ))}
             </select>
-          </span>
+          </div>
+        </div>
+        {props.subclass ? (
+          <div class="col-auto" data-testid="specialization">
+            <div class="input-group">
+              <label class="input-group-text">Subclasse</label>
+              <select
+                onChange={(e) =>
+                  props.onChangeSubclass(parseInt(e.target.value) - 1)
+                }
+                value={props.subclass.id}
+                data-testid="levelSelect"
+                class="form-select"
+              >
+                {props.subclasses.map((subclass) => (
+                  <option key={subclass.id} value={subclass.id}>
+                    {subclass.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
         ) : (
           <></>
         )}
-        <span>
-          <input id="updateCharacter" type="submit" value="Salvar"></input>
-        </span>
+        <div class="col-auto">
+          <input
+            id="updateCharacter"
+            type="submit"
+            class="btn btn-primary"
+            value="Salvar"
+          ></input>
+        </div>
 
         <div>
-          <span data-testid="classResource">
-            {props.resourceName}:{props.resourceAmount} /
-            {props.resourceAmountByLevel[props.level - 1]}
-          </span>
+          <h4>
+            <span data-testid="classResource" class="badge bg-secondary">
+              {props.resourceName}: {props.resourceAmount} /
+              {props.resourceAmountByLevel[props.level - 1]}
+            </span>
+          </h4>
         </div>
       </form>
     </div>

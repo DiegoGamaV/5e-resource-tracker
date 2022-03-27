@@ -5,14 +5,21 @@ function ClassInfoToolbar(props) {
   const redirectLink = "/class/" + props.class.id;
 
   return (
-    <div>
-      <span>{props.class.name}</span>
-      <span> - {props.class.abilityIdCounter} habilidades </span>
-      <span> - Usa {props.class.resourceName} </span>
-      <span> - Especializa-se em {props.class.specializationName} </span>
-      <Link to={redirectLink}>
-        <button type="button">Abrir</button>
-      </Link>
+    <div class="card w-75">
+      <div class="card-body">
+        <h5 class="card-title">{props.class.name}</h5>
+        <p class="card-text">
+          {" "}
+          Tem {props.class.abilityIdCounter} habilidades relevantes que utilizam
+          seus {props.class.resourceName}. Especializa-se em{" "}
+          {props.class.specializationName}
+        </p>
+        <Link to={redirectLink}>
+          <button class="btn btn-primary" type="button">
+            Abrir
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

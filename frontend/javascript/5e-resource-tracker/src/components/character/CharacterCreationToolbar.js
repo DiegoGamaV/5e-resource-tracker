@@ -103,76 +103,96 @@ function CharacterCreationToolbar(props) {
   return (
     <>
       <div>
-        <form onSubmit={createCharacter}>
-          <span>
-            <label htmlFor="name">Nome</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            ></input>
-          </span>
-          <span>
-            <label htmlFor="classes">Classe</label>
-            <select
-              name="classes"
-              id="classes"
-              onChange={(e) => handleOnSelectClass(parseInt(e.target.value))}
-            >
-              {classList.map((classInfo) => {
-                return (
-                  <option key={classInfo.id} value={classInfo.id}>
-                    {classInfo.name}
-                  </option>
-                );
-              })}
-            </select>
-          </span>
-          <span>
-            <label htmlFor="level">Nível</label>
-            <select
-              name="level"
-              id="level"
-              onChange={(e) => handleOnSelectLevel(parseInt(e.target.value))}
-            >
-              {levelOptions.map((level) => (
-                <option key={level} value={level}>
-                  {level}
-                </option>
-              ))}
-            </select>
-          </span>
-          {IsItTimeToSpecialize() ? (
-            <span>
-              <label htmlFor="subclasses">
-                {currentClass.specializationName
-                  ? currentClass.specializationName
-                  : "Subclasse"}
-              </label>
+        <form
+          onSubmit={createCharacter}
+          class="row gx-3 gy-2 align-items-center"
+        >
+          <div class="col-auto">
+            <div class="input-group">
+              <div class="input-group-text">Nome</div>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                class="form-control"
+              ></input>
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="input-group">
+              <label class="input-group-text">Classe</label>
               <select
-                name="subclasses"
-                id="subclasses"
-                onChange={(e) =>
-                  handleOnSelectSubclass(parseInt(e.target.value))
-                }
+                name="classes"
+                id="classes"
+                onChange={(e) => handleOnSelectClass(parseInt(e.target.value))}
+                class="form-select"
               >
-                {subclassList.map((subclass) => {
+                {classList.map((classInfo) => {
                   return (
-                    <option key={subclass.id} value={subclass.id}>
-                      {subclass.name}
+                    <option key={classInfo.id} value={classInfo.id}>
+                      {classInfo.name}
                     </option>
                   );
                 })}
               </select>
-            </span>
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="input-group">
+              <label class="input-group-text">Nível</label>
+              <select
+                name="level"
+                id="level"
+                onChange={(e) => handleOnSelectLevel(parseInt(e.target.value))}
+                class="form-select"
+              >
+                {levelOptions.map((level) => (
+                  <option key={level} value={level}>
+                    {level}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          {IsItTimeToSpecialize() ? (
+            <div class="col-auto">
+              <div class="input-group">
+                <label class="input-group-text">
+                  {currentClass.specializationName
+                    ? currentClass.specializationName
+                    : "Subclasse"}
+                </label>
+                <select
+                  name="subclasses"
+                  id="subclasses"
+                  onChange={(e) =>
+                    handleOnSelectSubclass(parseInt(e.target.value))
+                  }
+                  class="form-select"
+                >
+                  {subclassList.map((subclass) => {
+                    return (
+                      <option key={subclass.id} value={subclass.id}>
+                        {subclass.name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            </div>
           ) : (
             <></>
           )}
-          <span>
-            <input id="createCharacter" type="submit" value="Criar"></input>
-          </span>
+          <div class="col-auto">
+            <input
+              id="createCharacter"
+              type="submit"
+              value="Criar"
+              class="btn btn-primary"
+            ></input>
+          </div>
         </form>
       </div>
     </>
